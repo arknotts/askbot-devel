@@ -297,8 +297,8 @@ poor design of the data or methods on data objects #}
 -%}
     {% spaceless %}
     <{{ html_tag }} class="tag-left{% if deletable %} deletable-tag{% endif %}">
+    <div class="tag tag-right{% if css_class %} {{ css_class }}{% endif %}">
     <{% if not is_link or tag[-1] == '*' %}span{% else %}a{% endif %}
-            class="tag tag-right{% if css_class %} {{ css_class }}{% endif %}"
             href="{% url questions %}?tags={{tag|urlencode}}{{ 
                                                         if_else(
                                                             url_params != None,
@@ -308,13 +308,14 @@ poor design of the data or methods on data objects #}
                                                     }}"
             title="{% trans %}see questions tagged '{{ tag }}'{% endtrans %}" rel="tag"
         >{{ tag|replace('*', '&#10045;') }}</{% if not is_link or tag[-1] == '*' %}span{% else %}a{% endif %}>
-        {% if deletable %}
-            <span class="delete-icon"
-                {% if delete_link_title %}
-                    title="{{ delete_link_title }}"
-                {% endif %}
-            ></span>
-        {% endif %}
+    </div>
+    {% if deletable %}
+        <span class="delete-icon"
+            {% if delete_link_title %}
+                title="{{ delete_link_title }}"
+            {% endif %}
+        ></span>
+    {% endif %}
     </{{ html_tag }}>
     {{ extra_content }}
     {% endspaceless %}

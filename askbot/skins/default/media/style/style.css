@@ -370,7 +370,6 @@ ul.tags li {
     float:left;
     display: block;
     margin: 0 5px 0 0;
-    padding: 0;
 }
 
 .wildcard-tags {
@@ -400,31 +399,37 @@ ul#related-tags li {
 
 /* .tag-left and .tag-right are for the sliding doors decoration of tags */
 .tag-left {
-    background: url(../images/tag-right.png) no-repeat right center;
-    border: none;
+    background: url(../images/tag-left.png) no-repeat left top;
     cursor: pointer;
     display: block;
     float: left;
-    height: 18px;
+    height: 19px;
     margin: 0 5px 0 0;
-    overflow-x: hidden;
-    padding: 0;
+    overflow: hidden;
+    padding: 0px 0px 0px 15px;
 }
 
 .tag-right {
-    background: url(../images/tag-left.png) no-repeat left center;
-    border: none;
+    border-top: solid 1px #ededed;
+    border-right: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+    background-color: #fafafa;
     display: block;
+    line-height: 150%;
     float: left;
-    height: 18px;
-    line-height: 20px;
-    font-weight: normal;
+    height: 15px;
+    font-weight: bold;
     font-size: 11px;
-    padding: 0px 7px 0px 15px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 4px 0px 0px;
     text-decoration: none;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
+}
+
+.tag-right a {
+    text-decoration: none;	
 }
 
 .deletable-tag {
@@ -433,7 +438,6 @@ ul#related-tags li {
 }
 
 .deletable-tag .tag-right {
-    padding-right: 0px;
     float: left;
 }
 .deletable-tag.tag-left {
@@ -448,8 +452,10 @@ ul#related-tags li {
 
 span.delete-icon {
     padding-left: 13px;
-    vertical-align: bottom;
+    vertical-align: top;
+    line-height: 18px;
     background: url(../images/close-small-dark.png) no-repeat;
+    cursor: pointer;
 }
 span.delete-icon:hover {
     background: url(../images/close-small-hover.png) no-repeat;
@@ -2142,7 +2148,7 @@ a.edit {
 .lit { color: #066; }
 .pun { color: #660; }
 .pln { color: #000; }
-.tag { color: #008; }/* name conflict here */
+.tag { color: #333; }/* name conflict here */
 .atn { color: #606; }
 .atv { color: #080; }
 .dec { color: #606; }

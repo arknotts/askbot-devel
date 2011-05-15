@@ -8,7 +8,7 @@ var copyAltToTitle = function(sel){
 };
 
 var getUniqueWords = function(value){
-    var words = $.trim(value).split(/\s+/);
+    var words = $.trim(value).split(/\s*,\s*/);
     var uniques = new Object();
     var out = new Array();
     $.each(words, function(idx, item){

@@ -383,12 +383,17 @@ def get_tag_list(request):
     """returns tags to use in the autocomplete
     function
     """
-    tag_names = models.Tag.objects.filter(
+    tags = models.Tag.objects.filter(
                         deleted = False
-                    ).values_list(
-                        'name', flat = True
                     )
-    output = '\n'.join(tag_names)
+    
+    if 'q' in request.GET:
+        tags = tags.filter(
+                        name__istartswith = request.GET['q']
+                    )
+        
+    results = [ {'id': x.name, 'name': x.name} for x in tags ]
+    output = simplejson.dumps(results)
     return HttpResponse(output, mimetype = "text/plain")
 
 def subscribe_for_tags(request):

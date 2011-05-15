@@ -4,6 +4,7 @@
 {% block title %}{% spaceless %}{% trans %}Ask a question{% endtrans %}{% endspaceless %}{% endblock %}
 {% block forestyle %}
     <link rel="stylesheet" type="text/css" href="{{"/js/wmd/wmd.css"|media}}" />
+    <link rel="stylesheet" type="text/css" href="{{"/style/jquery.tokeninput.css"|media}}" />
 {% endblock %}
 {# main contents of ask form is in the template input_bar #}
 {% block sidebar %}
@@ -15,6 +16,7 @@
     <script type='text/javascript' src='{{"/js/post.js"|media}}'></script>
     <script type='text/javascript' src='{{"/js/wmd/showdown.js"|media}}'></script>
     <script type='text/javascript' src='{{"/js/wmd/wmd.js"|media}}'></script>
+    <script type='text/javascript' src='{{"/js/jquery.tokeninput.js"|media}}'></script>
     <script type='text/javascript'>
         var sortMethod = undefined;//need for live_search
         var minSearchWordLength = {{settings.MIN_SEARCH_WORD_LENGTH}};
@@ -48,9 +50,19 @@
                 $('#previewer').toggle();
                 $('#pre-collapse').text(txt);
             });
-            //Tags autocomplete
-
-            {{ macros.tag_autocomplete_js(id = '#id_tags') }}
+            
+            //Tags input/autocomplete
+            $("#id_tags").tokenInput("/get-tag-list/", 
+                                     {classes: {tokenDelete: 'delete-icon'},
+                                      deleteText: '',
+                                      hintText: '',
+                                      searchingText: '',
+                                      preventDuplicates: true,
+                                      allowCreation: true,
+                                      formatToken: function(value) {
+                                        return $("<div class='tag-left token-input-token-div'><div class='tag tag-right'><span>"+ value +"</span></div></div>");
+                                      }
+                                     });
 
             setupFormValidation($("#fmask"), CPValidator.getQuestionFormRules(), CPValidator.getQuestionFormMessages());
             lanai.highlightSyntax();
