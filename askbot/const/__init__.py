@@ -105,6 +105,7 @@ TYPE_ACTIVITY_FAVORITE=16
 TYPE_ACTIVITY_USER_FULL_UPDATED = 17
 TYPE_ACTIVITY_EMAIL_UPDATE_SENT = 18
 TYPE_ACTIVITY_MENTION = 19
+TYPE_ACTIVITY_UNANSWERED_REMINDER_SENT = 20
 #TYPE_ACTIVITY_EDIT_QUESTION=17
 #TYPE_ACTIVITY_EDIT_ANSWER=18
 
@@ -128,6 +129,10 @@ TYPE_ACTIVITY = (
     (TYPE_ACTIVITY_FAVORITE, _('selected favorite')),
     (TYPE_ACTIVITY_USER_FULL_UPDATED, _('completed user profile')),
     (TYPE_ACTIVITY_EMAIL_UPDATE_SENT, _('email update sent to user')),
+    (
+        TYPE_ACTIVITY_UNANSWERED_REMINDER_SENT,
+        _('reminder about unanswered questions sent'),
+    ),
     (TYPE_ACTIVITY_MENTION, _('mentioned in the post')),
 )
 
@@ -234,7 +239,8 @@ USER_VIEW_DATA_SIZE = 50
 
 DEPENDENCY_URLS = {
     'mathjax': 'http://www.mathjax.org/resources/docs/?installation.html',
-    'favicon': 'http://en.wikipedia.org/wiki/Favicon'
+    'favicon': 'http://en.wikipedia.org/wiki/Favicon',
+    'embedding-video': 'http://askbot.org/doc/optional-modules.html#embedding-video'
 }
 
 PASSWORD_MIN_LENGTH = 8
